@@ -74,7 +74,7 @@ class User:
         if input['password'] != input['confirm_password']:
             flash(u'Passwords must match.' 'register')
             is_valid = False
-        if NUMS.match(input['password']) or CAPS.match(input['password']):
+        if not NUMS.search(input['password']) or not CAPS.search(input['password']):
             flash(u'Password must have at least one uppercase letter and one number.', 'register')
             is_valid = False
         
