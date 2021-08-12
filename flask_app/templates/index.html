@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <title>Login</title>
+</head>
+<body>
+    <main class="box">
+        <form class="box" method="POST" action="/register">
+            <div class="col">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name">
+            </div>
+            <div class="col">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name">
+            </div>
+            <div class="col">
+                <label for="email">Email:</label>
+                <input type="text" name="email">
+            </div>
+            <div class="col">
+                <label for="password">Password:</label>
+                <input type="password" name="password">
+            </div>
+            <div class="col">
+                <label for="confirm_pass">Confirm Password:</label>
+                <input type="password" name="confirm_password">
+            </div>
+            <div class="col">
+                <input type="submit" class="button" value="Register" id="register">
+            </div>
+        </form>
+        <form class="box" method="POST" action="/login">
+            <div class="col">
+                <label for="email">Email:</label>
+                <input type="text" name="email">
+            </div>
+            <div class="col">
+                <label for="password">Password:</label>
+                <input type="password" name="password">
+            </div>
+
+            <div class="col">
+                <input type="submit" class="button" value="Login" id="login">
+            </div>
+            {% with login = get_flashed_messages(category_filter=["login"]) %} 
+                {% if login %}
+                    {% for error in login %}
+                    <p style="color: red">{{error}}</p>
+                    {% endfor %}
+                {% endif %} 
+            {% endwith %} 
+            {% with register = get_flashed_messages(category_filter=["register"]) %} 
+                {% if register %}
+                    {% for error in register %}
+                        <p style="color: red">{{error}}</p>
+                    {% endfor %}
+                {% endif %} 
+            {% endwith %} 
+        </form>
+    </main>
+</body>
+</html>
